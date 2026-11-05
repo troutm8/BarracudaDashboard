@@ -300,5 +300,16 @@ moves when the scorer updates it, not every second, so expect it to jump. Live g
 status 2 with clock text like `18:36`. No goal was scored in the sample, so how fast a goal
 appears is still unmeasured, as are status 3 and intermission values. The 20-second poll stays.
 
-Still to do, in order: connect Neon and Vercel; confirm the AHL trade deadline and the
+**2026-11-04, evening.** Deployed.
+
+- **Production is https://barracuda-dashboard.vercel.app**, Vercel project `barracuda-dashboard`.
+  Functions run in `cle1` (verified: `x-vercel-id` reads `sfo1::cle1::…`), beside Neon.
+- **Neon**: a new project in us-east-2. Its pooled connection string is `DATABASE_URL` in `.env`
+  locally (gitignored, so local runs now use Neon, not PGlite), as the GitHub Actions secret,
+  and in Vercel. The backfill ran from GitHub Actions, proving the feed answers from outside
+  this Mac: 3,130 rows, no failures, records still matching the official standings.
+- **Checked on production**: every route, 404s, live scores through `/api/live`, and full-page
+  screenshots on desktop and phone. The 17 smoke tests pass against Neon locally and in CI.
+
+Still to do, in order: confirm the AHL trade deadline and the
 non-Pacific playoff places; set the playoff season id and build the bracket page by April.

@@ -53,7 +53,7 @@ function Table({ rows, teams, streaks, cutAfter, line }: { rows: StandingsRow[];
                 <td className="r text-muted tabular">{i + 1}</td>
                 <td>
                   {t ? (
-                    <span className="inline-flex items-center gap-2">
+                    <span className="inline-flex items-center gap-2 pr-2">
                       <TeamLogo team={teamView(t)} size={22} />
                       <span className="hidden sm:inline">{t.name}</span>
                       <span className="sm:hidden">{t.abbrev}</span>
