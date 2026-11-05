@@ -56,4 +56,4 @@ versa. With a real `DATABASE_URL` this restriction goes away.
 2. Add it as the `DATABASE_URL` secret in the GitHub repository, then run the **Ingest data**
    workflow manually with job `backfill`.
 3. Import the repository in [Vercel](https://vercel.com), set `DATABASE_URL`, deploy. The
-   functions are pinned to `iad1` in `vercel.json` to sit beside Neon's us-east-1.
+   functions are pinned to `cle1` in `vercel.json` to sit beside Neon's us-east-2.

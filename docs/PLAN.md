@@ -180,7 +180,7 @@ decision 3.
 ## 8. Technology and reuse
 
 Same stack: Next.js 15, Tailwind 4, Drizzle, PGlite locally, Neon in production, Zod, Vitest,
-Playwright, GitHub Actions, Vercel in `iad1`. Copy the files rather than share a package, as
+Playwright, GitHub Actions, Vercel in `cle1`, beside Neon's us-east-2. Copy the files rather than share a package, as
 the Sharks plan decided.
 
 - **Copy nearly as is:** `db/client.ts`, `db/migrate.ts`, `ingest/http.ts`, `cli.ts` skeleton,
