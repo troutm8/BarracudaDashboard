@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      # Secrets cannot be read inside `if:`, so expose their presence as an env var. Forks and
+      # outside pull requests have no secrets, and skip the browser tests cleanly.
+      HAS_DATABASE: ${{ secrets.DATABASE_URL != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+
+      # Playwright smoke tests run the production build just made against the live Neon
+      # database. They assert structure and invariants, not specific numbers. See e2e/.
+      - name: Install Chromium
+        if: env.HAS_DATABASE == 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Smoke tests
+        if: env.HAS_DATABASE == 'true'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          E2E_STRICT_FRESHNESS: ${{ github.ref == 'refs/heads/main' && '1' || '0' }}
+        run: pnpm test:e2e
+      - name: Upload Playwright report
+        if: env.HAS_DATABASE == 'true' && failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7

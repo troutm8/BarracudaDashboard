@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4f7f7;
+  --fg: #141a1b;
+  --muted: #5f6f71;
+  --card: #ffffff;
+  --line: #dbe4e5;
+  --soft: #e9f0f1;
+  --win: #1f7a4d;
+  --loss: #b3261e;
+  --otl: #b26a00;
+  --live: #c2410c;
+  --teal: #007a87;
+  --teal-deep: #005c66;
+  --orange: #f08a1d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1415;
+    --fg: #e8eeee;
+    --muted: #93a4a6;
+    --card: #161e1f;
+    --line: #27383a;
+    --soft: #1c2729;
+    --win: #4ade80;
+    --loss: #f87171;
+    --otl: #fbbf24;
+    --live: #fb923c;
+    --teal: #2ec4cf;
+    --teal-deep: #1fa5ae;
+    --orange: #ff9a3c;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-soft: var(--soft);
+  --color-win: var(--win);
+  --color-loss: var(--loss);
+  --color-otl: var(--otl);
+  --color-live: var(--live);
+  --color-teal: var(--teal);
+  --color-teal-deep: var(--teal-deep);
+  --color-orange: var(--orange);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+table.data th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+table.data td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+table.data tr:last-child td {
+  border-bottom: 0;
+}
+table.data td.r,
+table.data th.r {
+  text-align: right;
+}
+table.data tr.featured td {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  font-weight: 600;
+}
+table.data tr.cutline td {
+  border-bottom: 2px dashed var(--orange);
+}
+
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
