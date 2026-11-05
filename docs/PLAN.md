@@ -293,5 +293,12 @@ Deviations from the plan above, and why:
   past seasons. Backtesting on 2025-26 is the obvious improvement.
 - **The bracket page is deferred** to April, when the playoff season id exists.
 
+**Live latency, measured 2026-11-04** on five Eastern games, polling every 15 seconds for about
+three minutes: despite `Cache-Control: max-age=240`, each game's clock changed every 30 to 160
+seconds, at different moments per game, so there is no single four-minute cache. The clock
+moves when the scorer updates it, not every second, so expect it to jump. Live games report
+status 2 with clock text like `18:36`. No goal was scored in the sample, so how fast a goal
+appears is still unmeasured, as are status 3 and intermission values. The 20-second poll stays.
+
 Still to do, in order: connect Neon and Vercel; confirm the AHL trade deadline and the
 non-Pacific playoff places; set the playoff season id and build the bracket page by April.
